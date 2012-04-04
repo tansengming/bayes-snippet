@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "bayes-snippet"
   gem.homepage = "http://github.com/tansengming/bayes-snippet"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Use a Bayesian classifier to extract snippets from text}
+  gem.description = %Q{Use a Bayesian classifier to extract snippets from text.}
   gem.email = "tansengming@gmail.com"
   gem.authors = ["SengMing Tan"]
   # dependencies defined in Gemfile

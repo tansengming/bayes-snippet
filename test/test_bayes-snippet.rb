@@ -1,8 +1,8 @@
 require 'helper'
 
 describe BayesSnippet do
-  let(:model) { BayesSnippet.new(str) }
-  subject { model.extract }
+  let(:model) { BayesSnippet.new }
+  subject { model.extract(str) }
 
   context 'when str is given' do
     let(:str) { 'This is a sentence.' }
@@ -11,14 +11,22 @@ describe BayesSnippet do
     end
   end
 
+  context 'when called multiple times' do
+    should 'not return same results' do
+      model.extract('First run.').must_equal 'First run.'
+      model.extract('Second run.').must_equal 'Second run.'
+    end
+  end
+
   context 'after training classfier' do
     let(:str) { 'This is a sentence. This is another one that talks about classifiers.' }
-
-    should 'pick the correct sentence' do
+    before do
       model.train('Must say classifier.')
       model.train('classifiers are great.')
-      model.reject('Ignore me this is a whole lot of nothing.')
+      model.reject('Ignore me this is a whole lot of nothing.')      
+    end
 
+    should 'pick the correct sentence' do
       subject.must_equal 'This is another one that talks about classifiers.'
     end
   end

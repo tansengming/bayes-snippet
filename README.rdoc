@@ -1,6 +1,6 @@
 = bayes-snippet
 
-Description goes here.
+Use a Bayesian classifier to extract snippets from text.
 
 == Contributing to bayes-snippet
  

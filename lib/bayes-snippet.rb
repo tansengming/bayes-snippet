@@ -2,12 +2,10 @@ require 'tactful_tokenizer'
 require 'classifier'
 
 class BayesSnippet
-  attr_reader :classifier, :str
-  @@sentence_tokenizer = TactfulTokenizer::Model.new
+  attr_reader :classifier
+  attr_accessor :str
 
-  def initialize(str)
-    @str = str
-  end
+  @@sentence_tokenizer = TactfulTokenizer::Model.new
 
   def classifier
     @classifier ||= Classifier::Bayes.new 'snippet', 'reject'
@@ -21,12 +19,13 @@ class BayesSnippet
     classifier.train(:reject, string)
   end
 
-  def extract
+  def extract(str)
+    self.str = str
     sentences.select{|sentence| classifier.classify(sentence) == 'Snippet'}.last
   end  
 
   private
   def sentences
-    @sentences ||= @@sentence_tokenizer.tokenize_text(str).reject{|s| s == ".  ."}
+    @@sentence_tokenizer.tokenize_text(str).reject{|s| s == ".  ."}
   end  
 end
