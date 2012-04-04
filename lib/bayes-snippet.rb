@@ -21,10 +21,14 @@ class BayesSnippet
 
   def extract(str)
     self.str = str
-    sentences.select{|sentence| classifier.classify(sentence) == 'Snippet'}.last
-  end  
+    snippets.last
+  end
 
   private
+  def snippets
+    sentences.select{|sentence| classifier.classify(sentence) == 'Snippet'}
+  end
+
   def sentences
     @@sentence_tokenizer.tokenize_text(str).reject{|s| s == ".  ."}
   end  
