@@ -21,7 +21,7 @@ class BayesSnippet
 
   def extract(str)
     self.str = str
-    snippets.last
+    snippets.first
   end
 
   private

@@ -24,6 +24,7 @@ describe BayesSnippet do
       model.train('Must say classifier.')
       model.train('classifiers are great.')
       model.reject('Ignore me this is a whole lot of nothing.')      
+      model.reject('This is a sentence.')      
     end
 
     should 'pick the correct sentence' do
